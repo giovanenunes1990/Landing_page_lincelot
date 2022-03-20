@@ -30,7 +30,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
-h3{
+h4{
     font-family: 'MedievalSharp', cursive;
     color: white;
     font-style: italic;
@@ -41,7 +41,6 @@ h3{
     width: 100%;
     display: flex;
     justify-content: center;
-  
     
 }
 
@@ -70,11 +69,15 @@ h3{
      
 }
 .body-main{
-    min-height: 900px;
+ 
     color: white;
     font-size: 12px;
     background: rgb(24,6,50);
     background: linear-gradient(0deg, rgba(24,6,50,1) 0%, rgba(5,0,0,1) 100%);
+}
+
+.first-sec{
+ height: 400px;
 }
 .body-main .divide{
     position: relative;
@@ -88,11 +91,55 @@ h3{
 .body-main .divide:hover img{
     max-width: 330px;
 }
+.icons{
+    margin-top: 120px;
+}
 
+.icons svg{
+   width: 30px !important;
+   height: 30px !important;
+}
+.icons p{
+    font-weight: bold;
+    padding-top: 3px;
+    margin-bottom: 2px;
+   
+}
+.icons span{
+    color: #2e007d;
+}
+.icons .stars svg{
+    width: 15px !important;
+   height: 15px !important;
+    color:  rgb(211,129,14);
+}
+.icons .cooler{
+    width: 6px;
+    height: 15px;
+    background-color: #0A020D;
+    position: relative;
+    left: -6px;
+}
+
+
+
+
+
+
+
+
+
+.bg-up{
+    width: 100%;
+    text-align: left;
+}
+.bg-up img{
+    max-width: 100%;
+}
 .updates{
-    background-color: black;
-    max-height: 300px;
-    margin-bottom: 30px;
+    
+    position: relative;
+    top: -320px;
 }
 
 .body-main .updates img{
@@ -100,6 +147,63 @@ max-width: 220px;
 position: relative;
 top: -50px;
 }
+
+.updates .row{
+ 
+    margin-bottom: 22px;
+
+}
+
+.updates .col {
+    width: 95px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.updates .col:nth-last-of-type(5){
+    padding-top: 120px;
+}
+.updates .col:nth-last-of-type(4){
+    padding-top: 70px;
+}
+
+.updates .col:nth-last-of-type(2){
+    padding-bottom: 36px;
+   
+}
+.updates .col:nth-last-of-type(1){
+   padding-bottom: 88px;
+}
+
+
+
+.updates .col p{
+    background-color: #2e007d;
+    width: 90px;
+    text-align: center;
+    height: 30px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    transition: 0.5s;
+   
+}
+.updates .col p.next{
+    background-color: rgb(156, 156, 156);
+}
+.updates .col p.next:hover{
+    background-color: #2e007d;
+}
+.updates .col span{
+    margin-top: 2px;
+    text-align: center;
+    font-size: 10px;
+    font-style: italic;
+}
+
 
 .ava img{
     max-width: 320px;
@@ -129,6 +233,22 @@ top: -50px;
 @media screen and (max-width: 768px){
     .flex{
         display: block;
+    }
+    .banner{
+        background-position: 70% 50%;
+       
+    }
+    .updates{
+        position: static;
+    }
+    .first-sec h4{
+        margin-bottom: 12px;
+    }
+    .updates{
+        margin-top: 32px;
+    }
+    .updates .col{
+        padding: 0;
     }
     
    
