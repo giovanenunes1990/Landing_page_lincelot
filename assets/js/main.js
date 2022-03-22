@@ -1,145 +1,105 @@
+var data = [
+    {
+        title: "Guerreiro Arcano",
+        description: 'Reduz o dano de magia em 12%'
+    },
+    {
+        title: "Mago Focado",
+        description: 'Magias de destruição causam 15% mais danos'
+    },
+    {
+        title: "Ancião da Noite",
+        description: 'Aumenta a chance de encontrar items raros em 30%'
+    },
+    {
+        title: "Alquimia da Sabedoria",
+        description: 'Poções tem efeito triplicado'
+    },
+    {
+        title: "Berserk",
+        description: 'Reduz danos físicos em 40%, e aumenta seus ataques físicos em 50%'
+    },
+    {
+        title: "Paz Interior",
+        description: 'Regenera-se 20% mais rápido'
+    },
+]
+
+function hash() {
+    let abc = ['A', 'X', 'Z', 'Y', 'D', 'M', 'K', 'L', 'S', 'F'];
+    let rand1 = Math.floor(Math.random() * 9);
+    let rand2 = Math.floor(Math.random() * 9);
+    let rand3 = Math.floor(Math.random() * 9);
+    let letter1 = abc[rand1];
+    let letter2 = abc[rand2];
+    let letter3 = abc[rand3];
+    let par1 = Math.floor(Math.random() * 9999 + 1000);
+    let par2 = Math.floor(Math.random() * 9999 + 1000);
+    let par3 = Math.floor(Math.random() * 9999 + 1000);
+    let par4 = Math.floor(Math.random() * 9999 + 1000);
+    let cod = `${par1}-${par2}-${par3}-${par4}`;
+    cod = cod.replace(rand1, letter1).replace(rand2, letter2).replace(rand3, letter3);
+    return cod;
+
+}
+function randomNumber() {
+    let rand = Math.floor(Math.random() * 5);
+    return rand;
+
+}
+
 window.onload = function () {
 
-    $('.svg-collection, .banner').mouseenter(function () {
-        $('.svg-collection .heart polygon').css('animation', ' animate-main 4s linear forwards');
+    let a = parseInt($("#download").text());
+    setInterval(function () {
+        let newValue = a = a + randomNumber();
+        $("#download").text(newValue);
+    }, 5000);
+
+    let b = parseInt($("#online").text());
+    setInterval(function () {
+        let newValue = b = b + randomNumber();
+        $("#online").text(newValue);
+    }, 4000);
+
+
+
+    $(".lucky canvas").one("click", function () {
+
+        let lucky = Math.floor(Math.random() * 5);
+        $("#title").text(data[lucky].title);
+        $("#description").text(data[lucky].description);
+        $("#cod").text(hash());
+
         setTimeout(() => {
-            $('.svg-collection .heart .cls-2').css('opacity', '1');
-        }, 4000);
-        setTimeout(() => {
-            $('.svg-collection .four path').css('animation', ' animate-four 4s linear forwards');
-        }, 4100);
-        setTimeout(() => {
-            $('.svg-collection .four .cls-2').css('opacity', '1');
-        }, 8100);
-        setTimeout(() => {
-            $('.svg-collection .boot path').css('animation', ' animate-three 4s linear forwards');
-        }, 8200);
-        setTimeout(() => {
-            $('.svg-collection .node path').css('animation', ' animate-two 5s linear forwards');
-        }, 12200);
-
-
-
-    });
-};
-var item = '';
-
-function ident(par) {
-    item = `${par}`;
-
-
-    var test = document.querySelector(`#${item}`);
-    let short = `#${item}`;
-
-    test.addEventListener("mouseover", function (event) {
-        document.querySelector(short + ' .overlay').style.opacity = '1';
-    });
-    test.addEventListener("mouseleave", function (event) {
-        document.querySelector(short + ' .overlay').style.opacity = '0';
+            $(".message").css('visibility', 'visible');
+            $(".message img").css('animation-name', 'card-loop');
+            $(".message .txt").css('animation-name', 'fade');
+        }, 3000);
+        return false;
     });
 
-    this.onmouseover = null;
+
+    $(".message .close").click(function () {
+        $(".message").css('visibility', 'hidden');
+    });
+
+    $(window).scroll(function () {
+        let windowBottom = $(this).scrollTop() + $(this).innerHeight();
+        let skull = $("#skull").offset().top + $(this).outerHeight() - 250;
+        let lady = $("#lady").offset().top + $(this).outerHeight() - 250;
+
+
+        if (skull < windowBottom) {
+            $("#skull").css('max-width', '300px');
+        }
+        if (lady < windowBottom) {
+            $("#lady").css('opacity', '1');
+        }
+
+    });
+
+
 
 }
-
-let open = false;
-
-function openMenuMobile() {
-    open = true;
-    document.querySelector('.menu-mobile-overlay').style.width = '100vw';
-    document.querySelector('.menu-mobile').style.width = '75vw';
-    document.querySelector('.menu-mobile ul').style.display = 'block';
-    document.querySelector('.btn-mobile').classList.add('btn-mobile-adapted');
-    document.querySelector('.btn-mobile .line_2').style.display = 'none';
-    document.querySelector('.line_1').classList.add('incline-left');
-    document.querySelector('.line_3').classList.add('incline-right');
-}
-
-function closeMenuMobile() {
-    open = false;
-    document.querySelector('.menu-mobile-overlay').style.width = '0';
-    document.querySelector('.menu-mobile').style.width = '0';
-    document.querySelector('.menu-mobile ul').style.display = 'none';
-    document.querySelector('.btn-mobile').classList.remove('btn-mobile-adapted');
-    document.querySelector('.btn-mobile .line_2').style.display = 'block';
-    document.querySelector('.line_1').classList.remove('incline-left');
-    document.querySelector('.line_3').classList.remove('incline-right');
-}
-
-function mobile() {
-
-    if (open == false) {
-        openMenuMobile();
-    } else {
-        closeMenuMobile();
-    }
-
-}
-function resizeClear(event) {
-
-    closeMenuMobile();
-
-}
-function moreClick(event) {
-    if (event.target === event.currentTarget) {
-        closeMenuMobile();
-    }
-}
-
-$('.desk a.internal').click(function (e) {
-    e.preventDefault();
-    var id = $(this).attr('href'),
-        targetOffSet = $(id).offset().top;
-
-    $('html, body').animate({
-        scrollTop: targetOffSet
-    }, 500);
-});
-
-$('.menu-mobile a.internal').click(function (e) {
-    e.preventDefault();
-    closeMenuMobile();
-    var id = $(this).attr('href'),
-        targetOffSet = $(id).offset().top;
-
-    $('html, body').animate({
-        scrollTop: targetOffSet
-    }, 500);
-
-});
-
-
-let theme = 'light';
-$(".theme-changes").click(function () {
-
-    if (theme == 'light') {
-        $(".btn-body .circle").css({ 'left': '0px', 'backgroundColor': 'lightgray' });
-        $(".btn-body").css({ 'backgroundColor': 'lightgray' });
-
-        $('.menu, .menu-mobile, .main').removeClass('menu-day').addClass('menu-night');
-        $('.about__text, .contact, .footer, .desk ul li a, .menu-mobile ul li a, .menu-mobile ul li').css('color', '#d4d4d4');
-        $(".line_1, .line_2, .line_3").css('backgroundColor', '#d4d4d4');
-
-        theme = 'dark';
-    } else if (theme == 'dark') {
-        $(".btn-body .circle").css({ 'left': '27.5px', 'backgroundColor': '#2a77eb' });
-        $(".btn-body").css({ 'backgroundColor': '#2a77eb' });
-
-        $('.menu, .menu-mobile, .main').removeClass('menu-night').addClass('menu-day');
-        $('.about__text, .contact, .footer, .desk ul li a, .menu-mobile ul li a, .menu-mobile ul li').css('color', '#303030');
-        $(".line_1, .line_2, .line_3").css('backgroundColor', '#303030');
-
-        theme = 'light';
-    }
-
-
-});
-
-
-
-document.querySelector('.btn-mobile').addEventListener('click', mobile);
-document.querySelector('.menu-mobile-overlay').addEventListener('click', moreClick);
-window.addEventListener('resize', resizeClear, true);
-
-
 
