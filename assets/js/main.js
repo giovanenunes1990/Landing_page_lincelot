@@ -1,3 +1,8 @@
+
+$(".alt-window").click(function () {
+    $(".alt-window svg g").css('animation', 'animate-main 4.5s linear forwards');
+});
+
 var data = [
     {
         title: "Guerreiro Arcano",
@@ -42,6 +47,27 @@ function hash() {
     return cod;
 
 }
+
+$(".lucky").one("click", function () {
+
+    let lucky = Math.floor(Math.random() * 5);
+    $("#title").text(data[lucky].title);
+    $("#description").text(data[lucky].description);
+    $("#cod").text(hash());
+
+    setTimeout(() => {
+        $(".message").css('visibility', 'visible');
+        $(".message img").css('animation-name', 'card-loop');
+        $(".message .txt").css('animation-name', 'fade');
+    }, 3000);
+    return false;
+});
+
+$(".message .close").click(function () {
+    $(".message").css('visibility', 'hidden');
+});
+
+
 function randomNumber() {
     let rand = Math.floor(Math.random() * 5);
     return rand;
@@ -61,45 +87,6 @@ window.onload = function () {
         let newValue = b = b + randomNumber();
         $("#online").text(newValue);
     }, 4000);
-
-
-
-    $(".lucky canvas").one("click", function () {
-
-        let lucky = Math.floor(Math.random() * 5);
-        $("#title").text(data[lucky].title);
-        $("#description").text(data[lucky].description);
-        $("#cod").text(hash());
-
-        setTimeout(() => {
-            $(".message").css('visibility', 'visible');
-            $(".message img").css('animation-name', 'card-loop');
-            $(".message .txt").css('animation-name', 'fade');
-        }, 3000);
-        return false;
-    });
-
-
-    $(".message .close").click(function () {
-        $(".message").css('visibility', 'hidden');
-    });
-
-    $(window).scroll(function () {
-        let windowBottom = $(this).scrollTop() + $(this).innerHeight();
-        let skull = $("#skull").offset().top + $(this).outerHeight() - 250;
-        let lady = $("#lady").offset().top + $(this).outerHeight() - 250;
-
-
-        if (skull < windowBottom) {
-            $("#skull").css('max-width', '300px');
-        }
-        if (lady < windowBottom) {
-            $("#lady").css('opacity', '1');
-        }
-
-    });
-
-
 
 }
 
